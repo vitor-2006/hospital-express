@@ -6,8 +6,6 @@ export const createConsulta = async (data,  descrisao, idMedico, idPaciente) => 
     try {
         const arrayPaciente = await verificPorIdMedico(idMedico)
         const arrayMedico = await verificPorIdPaciente(idPaciente)
-        console.log(arrayPaciente)
-        console.log(arrayMedico)
         if(arrayPaciente.length === 0 || arrayMedico.length === 0) {
             return false
         }
