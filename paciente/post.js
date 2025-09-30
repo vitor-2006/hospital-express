@@ -3,7 +3,7 @@ import { verificarDataEstrutura } from "../consulta/pesquisa.js"
 
 export const createPaciente = async (nome, dataNascimento) => {
     try {
-        const dataCerta = await verificarDataEstrutura(data)
+        const dataCerta = await verificarDataEstrutura(dataNascimento)
         if(!dataCerta){
             return false
         }

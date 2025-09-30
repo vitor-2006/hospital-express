@@ -16,7 +16,7 @@ const routesPaciente = express.Router()
 
 routesPaciente.get('/paciente', async (req, res) => {
     const pacientes = await getPaciente()
-    res.status(200).send(pacientes)
+    return res.status(200).send(pacientes)
 });
 
 // routesPaciente.post('/paciente', (req, res) => {
@@ -37,7 +37,7 @@ routesPaciente.post('/paciente', async (req, res) => {
     if(!newPaciente) {
         return res.status(400).send("paciente inválido!")
     }
-    res.status(201).send({ message: 'Paciente criado com sucesso', paciente: newPaciente })
+    return res.status(201).send({ message: 'Paciente criado com sucesso', paciente: newPaciente })
 })
 
 // routesPaciente.put('/paciente/:id', (req, res) => {
@@ -58,9 +58,9 @@ routesPaciente.put('/paciente/:id', async (req, res) => {
     const { nome, dataNascimento } = req.body
     const updatedPaciente = await updatePaciente(id, nome, dataNascimento)
     if(updatedPaciente) {
-        res.status(200).send({ message: 'Paciente atualizado com sucesso', paciente: updatedPaciente })
+        return res.status(200).send({ message: 'Paciente atualizado com sucesso', paciente: updatedPaciente })
     } else {
-        res.status(404).send({ message: 'Paciente não encontrado' })
+        return res.status(404).send({ message: 'Paciente não encontrado' })
     }
 })
 
@@ -79,9 +79,9 @@ routesPaciente.delete('/paciente/:id', async (req, res) => {
     const { id } = req.params
     const deletedPaciente = deletePaciente(id)
     if(deletedPaciente) {
-        res.status(200).send({ message:'Paciente e suas consultas foram deletados com sucesso', paciente: deletedPaciente })
+        return res.status(200).send({ message:'Paciente e suas consultas foram deletados com sucesso', paciente: deletedPaciente })
     } else {
-        res.status(404).send({ message: 'Paciente não encontrado' })
+        return res.status(404).send({ message: 'Paciente não encontrado' })
     }
 })
 
@@ -115,9 +115,9 @@ routesPaciente.get('/paciente/search', async (req, res) => {
         searchPaciente = await pesqPorDataNascimento(dataNascimento)
     }
     if(searchPaciente) {
-        res.status(200).send(searchPaciente)
+        return res.status(200).send(searchPaciente)
     } else {
-        res.status(404).send({ message: 'Paciente não encontrado' })
+        return res.status(404).send({ message: 'Paciente não encontrado' })
     }
 })
 
