@@ -34,6 +34,9 @@ routesPaciente.get('/paciente', async (req, res) => {
 routesPaciente.post('/paciente', async (req, res) => {
     const { nome, dataNascimento } = req.body
     const newPaciente = await createPaciente(nome, dataNascimento)
+    if(!newPaciente) {
+        return res.status(400).send("paciente inválido!")
+    }
     res.status(201).send({ message: 'Paciente criado com sucesso', paciente: newPaciente })
 })
 

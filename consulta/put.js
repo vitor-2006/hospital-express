@@ -9,6 +9,10 @@ export const updateConsulta = async (data, descrisao, idMedico, idPaciente) => {
         if(!arrayPaciente || !arrayMedico) {
             return false
         }
+        const dataCerta = await verificarDataEstrutura(data)
+        if(!dataCerta){
+            return false
+        }
         const updatedConsulta = await Consulta.findByIdAndUpdate(
             id,
             {data, descrisao, idMedico, idPaciente },
