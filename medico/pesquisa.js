@@ -24,3 +24,12 @@ export const pesqPorEspecialidade = async (especialidade) => {
       throw error;
     }
 }
+
+export const verificPorIdMedico = async (id) => {
+  try {
+    return await Medico.find({id: id})
+  } catch (error) {
+    console.error('Erro ao pesquisar Medico', error.message);
+    throw error;
+  }
+}

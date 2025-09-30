@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import { routesPaciente } from './paciente/routesPaciente.js';
 import { routesMedico } from './medico/routesMedico.js';
 import { routesConsulta } from './consulta/routesConsulta.js';
-import { routesRelatorio } from './relatorios/routesRelatorios.js';
+// import { routesRelatorio } from './relatorios/routesRelatorios.js';
 
 dotenv.config()
 const dbUser = process.env.DB_USER
@@ -14,7 +14,7 @@ const app = express();
 const port = 3000;
 
 mongoose.connect(
-    `mongodb+srv://${dbUser}:${dbPass}@cluster0.nkow1bb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
+    `mongodb+srv://${dbUser}:${dbPass}@cluster0.nkow1bb.mongodb.net/hospital?retryWrites=true&w=majority&appName=Cluster0`
 )
 
 mongoose.connection.once("open", () => {
@@ -30,7 +30,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(routesPaciente)
 app.use(routesMedico)
 app.use(routesConsulta)
-app.use(routesRelatorio)
+// app.use(routesRelatorio)
 
 app.listen(port, () => {
     console.log("Api iniciada na porta: " + port);

@@ -11,4 +11,4 @@ const PacienteSchema = new mongoose.Schema({
     }
 })
 
-export const Paciente = mongoose.model('paciente', PacienteSchema)
+export const Paciente = mongoose.model('pacientes', PacienteSchema)

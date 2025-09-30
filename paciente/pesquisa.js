@@ -24,3 +24,12 @@ export const pesqPorDataNascimento = async (dataNascimento) => {
       throw error;
     }
 }
+
+export const verificPorIdPaciente = async (id) => {
+  try {
+    return await Paciente.find({id: id})
+  } catch (error) {
+    console.error('Erro ao pesquisar Medico', error.message);
+    throw error;
+  }
+}

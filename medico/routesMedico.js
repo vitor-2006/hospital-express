@@ -16,7 +16,7 @@ const routesMedico = express.Router()
 
 routesMedico.get('/medico', async (req, res) => {
     const medicos = await getMedico()
-    res.status(200).send(medicos)
+    return res.status(200).send(medicos)
 });
 
 // routesMedico.post('/medico', (req, res) => {
@@ -34,7 +34,7 @@ routesMedico.get('/medico', async (req, res) => {
 routesMedico.post('/medico', async (req, res) => {
     const { nome, especialidade } = req.body
     const newMedico = await createMedico(nome, especialidade)
-    res.status(201).send({ message: 'medico criado com sucesso', medico: newMedico })
+    return res.status(201).send({ message: 'medico criado com sucesso', medico: newMedico })
 })
 
 // routesMedico.put('/medico/:id', (req, res) => {
@@ -55,9 +55,9 @@ routesMedico.put('/medico/:id', async (req, res) => {
     const { nome, especialidade } = req.body
     const updatedMedico = await updateMedico(id, nome, especialidade)
     if(updatedMedico) {
-        res.status(200).send({ message: 'medico atualizado com sucesso', medico: updatedMedico })
+        return res.status(200).send({ message: 'medico atualizado com sucesso', medico: updatedMedico })
     } else {
-        res.status(404).send({ message: 'medico não encontrado' })
+        return res.status(404).send({ message: 'medico não encontrado' })
     }
 })
 
@@ -76,9 +76,9 @@ routesMedico.delete('/medico/:id', async (req, res) => {
     const { id } = req.params
     const deletedMedico = deleteMedico(id)
     if(deletedMedico) {
-        res.status(200).send({ message:'medico e suas consultas foram deletados com sucesso', medico: deletedMedico })
+        return res.status(200).send({ message:'medico e suas consultas foram deletados com sucesso', medico: deletedMedico })
     } else {
-        res.status(404).send({ message: 'medico não encontrado' })
+        return res.status(404).send({ message: 'medico não encontrado' })
     }
 })
 
@@ -111,9 +111,9 @@ routesMedico.get('/medico/search', async (req, res) => {
         searchMedico = await pesqPorEspecialidade(especialidade)
     }
     if(searchMedico) {
-        res.status(200).send(searchMedico)
+        return res.status(200).send(searchMedico)
     } else {
-        res.status(404).send({ message: 'medico não encontrado' })
+        return res.status(404).send({ message: 'medico não encontrado' })
     }
 })
 

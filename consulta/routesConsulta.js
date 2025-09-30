@@ -16,7 +16,7 @@ const routesConsulta = express.Router()
 
 routesConsulta.get('/consulta', async (req, res) => {
     const consultas = await getConsulta()
-    res.status(200).send(consultas)
+    return res.status(200).send(consultas)
 });
 
 // routesConsulta.post('/consulta', (req, res) => {
@@ -36,7 +36,10 @@ routesConsulta.get('/consulta', async (req, res) => {
 routesConsulta.post('/consulta', async (req, res) => {
     const { data, descrisao, idMedico, idPaciente } = req.body
     const newConsulta = await createConsulta(data, descrisao, idMedico, idPaciente)
-    res.status(201).send({ message: 'consulta criada com sucesso', consulta: newConsulta })
+    if(!newConsulta) {
+        return res.status(400).send("consulta inválida")
+    }
+    return res.status(201).send({ message: 'consulta criada com sucesso', consulta: newConsulta })
 })
 
 // routesConsulta.put('/consulta/:id', (req, res) => {
@@ -60,9 +63,9 @@ routesConsulta.put('/consulta/:id', async (req, res) => {
     const { data, descrisao, idMedico, idPaciente } = req.body
     const updatedConsulta = await updateConsulta(id, data, descrisao, idMedico, idPaciente)
     if(updatedConsulta) {
-        res.status(200).send({ message: 'consulta atualizada com sucesso', consulta: updatedConsulta })
+        return res.status(200).send({ message: 'consulta atualizada com sucesso', consulta: updatedConsulta })
     } else {
-        res.status(404).send({ message: 'consulta não encontrada' })
+        return res.status(404).send({ message: 'consulta não encontrada' })
     }
 })
 
@@ -81,9 +84,9 @@ routesConsulta.delete('/consulta/:id', async (req, res) => {
     const { id } = req.params
     const deletedConsulta = deleteConsulta(id)
     if(deletedConsulta) {
-        res.status(200).send({ message:'consulta deletada com sucesso', consulta: deletedConsulta })
+        return res.status(200).send({ message:'consulta deletada com sucesso', consulta: deletedConsulta })
     } else {
-        res.status(404).send({ message: 'consulta não encontrada' })
+        return res.status(404).send({ message: 'consulta não encontrada' })
     }
 })
 
@@ -140,9 +143,9 @@ routesConsulta.get('/consulta/search', async (req, res) => {
         searchConsulta = await pesqPorIdPaciente(idPaciente)
     }
     if(searchConsulta) {
-        res.status(200).send(searchConsulta)
+        return res.status(200).send(searchConsulta)
     } else {
-        res.status(404).send({ message: 'consulta não encontrada' })
+        return res.status(404).send({ message: 'consulta não encontrada' })
     }
 })
 

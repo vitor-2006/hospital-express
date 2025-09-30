@@ -19,4 +19,4 @@ const ConsultaSchema = new mongoose.Schema({
     }
 })
 
-export const Consulta = mongoose.model('consulta', ConsultaSchema)
+export const Consulta = mongoose.model('consultas', ConsultaSchema)
