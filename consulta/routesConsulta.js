@@ -65,7 +65,7 @@ routesConsulta.put('/consulta/:id', async (req, res) => {
     if(updatedConsulta) {
         return res.status(200).send({ message: 'consulta atualizada com sucesso', consulta: updatedConsulta })
     } else {
-        return res.status(404).send({ message: 'consulta não encontrada' })
+        return res.status(404).send({ message: 'consulta não encontrada ou inválida' })
     }
 })
 
