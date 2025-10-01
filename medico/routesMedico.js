@@ -35,9 +35,9 @@ routesMedico.post('/medico', async (req, res) => {
     const { nome, especialidade } = req.body
     const newMedico = await createMedico(nome, especialidade)
     if(newMedico) {
-        return res.status(201).send({ message: 'medico criado com sucesso', medico: newMedico })
+        return res.status(201).send({ message: 'médico criado com sucesso', medico: newMedico })
     } else {
-        return res.status(400).send({ message: 'erro ao registrar medico' })
+        return res.status(400).send({ message: 'erro ao registrar médico' })
     }
 })
 
@@ -59,9 +59,9 @@ routesMedico.put('/medico/:id', async (req, res) => {
     const { nome, especialidade } = req.body
     const updatedMedico = await updateMedico(id, nome, especialidade)
     if(updatedMedico) {
-        return res.status(200).send({ message: 'medico atualizado com sucesso', medico: updatedMedico })
+        return res.status(200).send({ message: 'médico atualizado com sucesso', medico: updatedMedico })
     } else {
-        return res.status(404).send({ message: 'medico não encontrado' })
+        return res.status(404).send({ message: 'médico não encontrado' })
     }
 })
 
@@ -80,9 +80,9 @@ routesMedico.delete('/medico/:id', async (req, res) => {
     const { id } = req.params
     const deletedMedico = deleteMedico(id)
     if(deletedMedico) {
-        return res.status(200).send({ message:'medico e suas consultas foram deletados com sucesso', medico: deletedMedico })
+        return res.status(200).send({ message:'médico e suas consultas foram deletados com sucesso', medico: deletedMedico })
     } else {
-        return res.status(404).send({ message: 'medico não encontrado' })
+        return res.status(404).send({ message: 'médico não encontrado' })
     }
 })
 
@@ -117,7 +117,7 @@ routesMedico.get('/medico/search', async (req, res) => {
     if(searchMedico) {
         return res.status(200).send(searchMedico)
     } else {
-        return res.status(404).send({ message: 'medico não encontrado' })
+        return res.status(404).send({ message: 'médico não encontrado' })
     }
 })
 
