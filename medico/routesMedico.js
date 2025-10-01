@@ -34,7 +34,11 @@ routesMedico.get('/medico', async (req, res) => {
 routesMedico.post('/medico', async (req, res) => {
     const { nome, especialidade } = req.body
     const newMedico = await createMedico(nome, especialidade)
-    return res.status(201).send({ message: 'medico criado com sucesso', medico: newMedico })
+    if(newMedico) {
+        return res.status(201).send({ message: 'medico criado com sucesso', medico: newMedico })
+    } else {
+        return res.status(400).send({ message: 'erro ao registrar medico' })
+    }
 })
 
 // routesMedico.put('/medico/:id', (req, res) => {
