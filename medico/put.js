@@ -1,6 +1,6 @@
 import { Medico } from "./schema.js"
 
-export const updateMedico = async (nome, especialidade) => {
+export const updateMedico = async (id, nome, especialidade) => {
     try {
         const updatedMedico = await Medico.findByIdAndUpdate(
             id,

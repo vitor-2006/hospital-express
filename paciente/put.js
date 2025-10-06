@@ -1,7 +1,7 @@
 import { Paciente } from "./schema.js"
 import { verificarDataEstrutura } from "../consulta/pesquisa.js"
 
-export const updatePaciente = async (nome, dataNascimento) => {
+export const updatePaciente = async (id, nome, dataNascimento) => {
     try {
         const dataCerta = await verificarDataEstrutura(dataNascimento)
         if(!dataCerta){

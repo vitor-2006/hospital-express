@@ -2,7 +2,7 @@ import { Consulta } from "./schema.js"
 import { verificPorIdPaciente } from "../paciente/pesquisa.js"
 import { verificPorIdMedico } from "../medico/pesquisa.js"
 
-export const updateConsulta = async (data, descrisao, idMedico, idPaciente) => {
+export const updateConsulta = async (id, data, descrisao, idMedico, idPaciente) => {
     try {
         const arrayPaciente = verificPorIdMedico(idMedico)
         const arrayMedico = verificPorIdPaciente(idPaciente)
