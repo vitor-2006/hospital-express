@@ -7,7 +7,6 @@ function escapeRegex(text) {
 export const pesqPorNome = async (nome) => {
     try {
       const safeNome = escapeRegex(nome);
-      console.log(safeNome)
       return await Paciente.find({ nome: { $regex: safeNome, $options: "i" } }).exec();
     } catch (error) {
       console.error('Erro ao pesquisar Paciente', error.message);

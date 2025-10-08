@@ -7,7 +7,6 @@ function escapeRegex(text) {
 export const pesqPorData = async (data) => {
     try {
       const safeData = escapeRegex(data);
-      console.log(safeData)
       return await Consulta.find({ data: { $regex: safeData, $options: "i" } }).exec();
     } catch (error) {
       console.error('Erro ao pesquisar Consulta', error.message);
