@@ -3,7 +3,7 @@ import { deleteConsultaPorMedico } from '../consulta/delete.js'
 
 export const deleteMedico = async (id) => {
     try {
-        deleteConsultaPorMedico(id)
+        await deleteConsultaPorMedico(id)
         return await Medico.findByIdAndDelete(id)
     } catch (error) {
         console.error('Erro ao deletar medico:', error.message)
