@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import { routesPaciente } from './paciente/routesPaciente.js';
 import { routesMedico } from './medico/routesMedico.js';
 import { routesConsulta } from './consulta/routesConsulta.js';
+import { userRoutes } from './user/routes.js';
 // import { routesRelatorio } from './relatorios/routesRelatorios.js';
 
 dotenv.config()
@@ -31,6 +32,7 @@ app.use(routesPaciente)
 app.use(routesMedico)
 app.use(routesConsulta)
 // app.use(routesRelatorio)
+app.use(userRoutes)
 
 app.listen(port, () => {
     console.log("Api iniciada na porta: " + port);

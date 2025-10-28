@@ -1,11 +1,11 @@
 {
   "name": "hospital-express",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/app.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +15,9 @@
     "express": "^5.1.0"
   },
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "dotenv": "^17.2.2",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.18.2",
     "nodemon": "^3.1.10"
   }

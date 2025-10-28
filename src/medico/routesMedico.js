@@ -4,6 +4,7 @@ import { createMedico } from "./post.js";
 import { updateMedico } from "./put.js";
 import { deleteMedico } from "./delete.js";
 import { pesqPorNome, pesqPorEspecialidade } from "./pesquisa.js";
+import { middleWare } from "../middleware/authentication.js";
 
 // let medico = []
 // let idGen = 100
@@ -14,7 +15,7 @@ const routesMedico = express.Router()
 //     return res.json(medico);
 // });
 
-routesMedico.get('/medico', async (req, res) => {
+routesMedico.get('/medico', middleWare, async (req, res) => {
     const medicos = await getMedico()
     return res.status(200).send(medicos)
 });
@@ -31,7 +32,7 @@ routesMedico.get('/medico', async (req, res) => {
 //     return res.status(201).send('Medico registrado!')
 // })
 
-routesMedico.post('/medico', async (req, res) => {
+routesMedico.post('/medico', middleWare, async (req, res) => {
     const { nome, especialidade } = req.body
     const newMedico = await createMedico(nome, especialidade)
     if(newMedico) {
@@ -54,7 +55,7 @@ routesMedico.post('/medico', async (req, res) => {
 //     return res.send("Medico não encontrado!")
 // })
 
-routesMedico.put('/medico/:id', async (req, res) => {
+routesMedico.put('/medico/:id', middleWare, async (req, res) => {
     const { id } = req.params
     const { nome, especialidade } = req.body
     const updatedMedico = await updateMedico(id, nome, especialidade)
@@ -76,7 +77,7 @@ routesMedico.put('/medico/:id', async (req, res) => {
 //     return res.send("Medico não encontrado")
 // })
 
-routesMedico.delete('/medico/:id', async (req, res) => {
+routesMedico.delete('/medico/:id', middleWare, async (req, res) => {
     const { id } = req.params
     const deletedMedico = deleteMedico(id)
     if(deletedMedico) {
@@ -106,7 +107,7 @@ routesMedico.delete('/medico/:id', async (req, res) => {
 //     return res.send(medicoFind)
 // })
 
-routesMedico.get('/medico/search', async (req, res) => {
+routesMedico.get('/medico/search', middleWare, async (req, res) => {
     const { nome, especialidade } = req.query
     let searchMedico 
     if(nome) {

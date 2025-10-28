@@ -4,6 +4,7 @@ import { createConsulta } from "./post.js";
 import { updateConsulta } from "./put.js";
 import { deleteConsulta } from "./delete.js";
 import { pesqPorData, pesqPorDescrisao, pesqPorIdMedico, pesqPorIdPaciente } from "./pesquisa.js";
+import { middleWare } from "../middleware/authentication.js";
 
 // let consulta = []
 // let idGen = 1
@@ -14,7 +15,7 @@ const routesConsulta = express.Router()
 //     return res.json(consulta);
 // });
 
-routesConsulta.get('/consulta', async (req, res) => {
+routesConsulta.get('/consulta', middleWare, async (req, res) => {
     const consultas = await getConsulta()
     return res.status(200).send(consultas)
 });
@@ -33,7 +34,7 @@ routesConsulta.get('/consulta', async (req, res) => {
 //     return res.status(201).send('Consulta registrada!')
 // })
 
-routesConsulta.post('/consulta', async (req, res) => {
+routesConsulta.post('/consulta', middleWare, async (req, res) => {
     const { data, descrisao, idMedico, idPaciente } = req.body
     const newConsulta = await createConsulta(data, descrisao, idMedico, idPaciente)
     if(!newConsulta) {
@@ -58,7 +59,7 @@ routesConsulta.post('/consulta', async (req, res) => {
 // })
 
 
-routesConsulta.put('/consulta/:id', async (req, res) => {
+routesConsulta.put('/consulta/:id', middleWare, async (req, res) => {
     const { id } = req.params
     const { data, descrisao, idMedico, idPaciente } = req.body
     const updatedConsulta = await updateConsulta(id, data, descrisao, idMedico, idPaciente)
@@ -80,7 +81,7 @@ routesConsulta.put('/consulta/:id', async (req, res) => {
 //     return res.send("Consulta não encontrada")
 // })
 
-routesConsulta.delete('/consulta/:id', async (req, res) => {
+routesConsulta.delete('/consulta/:id', middleWare, async (req, res) => {
     const { id } = req.params
     const deletedConsulta = deleteConsulta(id)
     if(deletedConsulta) {
@@ -130,7 +131,7 @@ routesConsulta.delete('/consulta/:id', async (req, res) => {
 //     return res.send(consultaFind)
 // })
 
-routesConsulta.get('/consulta/search', async (req, res) => {
+routesConsulta.get('/consulta/search', middleWare, async (req, res) => {
     const { data, descrisao, idMedico, idPaciente } = req.query
     let searchConsulta 
     if(data) {
